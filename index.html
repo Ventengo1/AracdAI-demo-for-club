@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro Rocket Evader</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="arcade-container">
+    <div class="crt-overlay"></div>
+    <div id="ui">
+      <div class="hud">
+        <div>SCORE: <span id="score">0</span></div>
+        <div>HIGH: <span id="high-score">0</span></div>
+      </div>
+      <div id="start-screen" class="overlay-screen">
+        <h1 class="title">ASTRO DODGER</h1>
+        <p class="subtitle">RETRO SPACE DODGE</p>
+        <div class="instructions">
+          <p>🎮 <b>[A] / [D]</b> or <b>[←] / [→]</b> to Dodge</p>
+          <p>⚡ <b>[SPACE]</b> or <b>[SHIFT]</b> to Boost Speed</p>
+          <p>🛡️ Collect Shields & Stars | Avoid Asteroids</p>
+        </div>
+        <button id="start-btn" class="arcade-btn">PRESS START</button>
+      </div>
+      <div id="game-over-screen" class="overlay-screen hidden">
+        <h1 class="title danger">CRASHED!</h1>
+        <p class="final-score-label">FINAL SCORE: <span id="final-score">0</span></p>
+        <button id="restart-btn" class="arcade-btn">TRY AGAIN</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
