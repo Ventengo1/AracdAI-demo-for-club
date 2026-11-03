@@ -60,7 +60,7 @@ let particles = [];
 let stars = [];
 
 // Initialize Background Stars
-for (let i = 0; i < 60; i++) {
+for (let i = 0; i < 150; i++) {
   stars.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
@@ -169,8 +169,14 @@ function drawRocket(x, y, width, height, color, isEnemy = false) {
 }
 
 function update() {
+    let isBoosting = keys["Space"] || keys["ShiftLeft"] || keys["ShiftRight"];
+    let speedMultiplier = 1;
+
+    if (isBoosting) {
+        speedMultiplier = 2.5;
+    }
   // Boost Mechanic
-  let speedMultiplier = 1;
+  
   if (keys["Space"] || keys["ShiftLeft"] || keys["ShiftRight"]) {
     speedMultiplier = 1.8;
   }
