@@ -58,6 +58,7 @@ let obstacles = [];
 let powerups = [];
 let particles = [];
 let stars = [];
+let popups = [];
 
 // Initialize Background Stars
 for (let i = 0; i < 150; i++) {
@@ -97,6 +98,10 @@ function startGame() {
   gameOverScreen.classList.add("hidden");
   isPlaying = true;
   requestAnimationFrame(gameLoop);
+}
+
+function addPopup(x, y, text) {
+  popups.push({ x: x, y: y, text: text, life: 30 });
 }
 
 function spawnObstacle() {
@@ -188,6 +193,12 @@ function update() {
   if ((keys["ArrowRight"] || keys["KeyD"]) && player.x < canvas.width - player.width) {
     player.x += player.speed * speedMultiplier;
   }
+  
+  popups.forEach((p, index) => {
+    p.y -= 1.5;  //adding this as feature, want it to be a popup that come uo
+    p.life--;
+    if (p.life <= 0) popups.splice(index, 1);
+  });
 
   // Thruster Particles
   particles.push({
@@ -266,6 +277,7 @@ function update() {
       } else if (pow.type === "star") {
         score += 50;
         scoreEl.textContent = score;
+        addPopup(pow.x, pow.y, "+50"); //new feature I adding 
         playSynthSound(800, "triangle", 0.1);
       }
       powerups.splice(index, 1);
@@ -293,6 +305,12 @@ function draw() {
   particles.forEach((p) => {
     ctx.fillStyle = p.color;
     ctx.fillRect(p.x, p.y, p.size, p.size);
+  });
+  
+  popups.forEach((p) => {
+    ctx.fillStyle = "#ffff00"; //draw the popup for the score
+    ctx.font = "bold 12px 'Courier New'";
+    ctx.fillText(p.text, p.x, p.y);
   });
 
   // Render Player
