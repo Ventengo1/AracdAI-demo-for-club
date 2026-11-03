@@ -47,7 +47,7 @@ const player = {
   y: canvas.height - 80,
   width: 30,
   height: 50,
-  speed: 5,
+  speed: 8,
   hasShield: false,
   shieldTimer: 0
 };
