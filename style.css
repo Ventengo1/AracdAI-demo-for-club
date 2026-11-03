@@ -118,11 +118,11 @@ body {
 .final-score-label {
   font-size: 18px;
   margin: 20px 0 30px;
-  color: #fff;
+  color: #a0c261;
 }
 
 .arcade-btn {
-  background: #ff0055;
+  background: rgb(225, 22, 90);
   color: #fff;
   border: none;
   padding: 12px 28px;
