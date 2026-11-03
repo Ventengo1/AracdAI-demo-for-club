@@ -9,6 +9,7 @@ const startScreen = document.getElementById("start-screen");
 const gameOverScreen = document.getElementById("game-over-screen");
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
+let screenShakeTimer = 0;
 
 // Audio Context Setup
 let audioCtx;
@@ -128,6 +129,8 @@ function spawnPowerup() {
 }
 
 function createExplosion(x, y, color) {
+  screenShakeTimer = 12;
+  draw();
   for (let i = 0; i < 20; i++) {
     particles.push({
       x,
@@ -267,6 +270,11 @@ function update() {
 }
 
 function draw() {
+  ctx.save();
+  if (screenShakeTimer > 0) {
+    screenShakeTimer--;
+    ctx.translate((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8);
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Render Stars
@@ -331,6 +339,7 @@ function handleGameOver() {
 
   finalScoreEl.textContent = score;
   gameOverScreen.classList.remove("hidden");
+  draw();
 }
 
 function gameLoop() {
